@@ -25,7 +25,7 @@ namespace ndb
             }
 
             // get << not source
-            if constexpr ( !(static_cast<bool>((int)Clause & (int)expr_clause_code::set) ) // do not deduce for SET
+            if constexpr ( !(static_cast<bool>((int)Clause & (int)expr_clause_code::set) )) // do not deduce for SET
             {
                 if constexpr (!expr_has_clause<L, expr_clause_code::source> && !expr_has_clause<R, expr_clause_code::source>)
                 {
