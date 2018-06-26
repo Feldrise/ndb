@@ -86,7 +86,7 @@ namespace ndb
     {
         auto keyword = ndb::expr_make_keyword<expr_keyword_code::sort>();
         auto expr = ((ndb::expr_make(t), ...)); // msvc fix : use (( )) to compile
-        return ndb::expression<decltype(keyword), expr_type_code::keyword, decltype(expr)> { keyword, expr };
+        return ndb::expression<decltype(keyword), expr_type_code::keyword, decltype(expr), expr_clause_code::sort> { keyword, expr };
     }
 
     template<class T>

@@ -51,6 +51,7 @@ namespace ndb
 
                 // get << condition
                 if constexpr (expr_has_clause_value<expr_clause, expr_clause_code::condition>
+                    || expr_has_clause_value<expr_clause, expr_clause_code::sort>
                     && !expr_has_clause_value<expr_clause, expr_clause_code::get >
                     && !expr_has_clause_value<expr_clause, expr_clause_code::source>)
                 {
@@ -60,7 +61,7 @@ namespace ndb
                     ne.push_back(deduce_source_id<Expr>() + 48);
                     ne.deduced_source = true;
 
-                    ne.push_back(keyword_code<expr_keyword_code::condition, expr_category_code::sql>::value);
+                    if constexpr (expr_has_clause_value<expr_clause, expr_clause_code::condition>) ne.push_back(keyword_code<expr_keyword_code::condition, expr_category_code::sql>::value);
                 }
             }
 
